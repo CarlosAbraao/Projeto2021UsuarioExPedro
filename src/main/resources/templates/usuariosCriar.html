@@ -1,8 +1,8 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-br" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
@@ -11,7 +11,47 @@
     <title>Hello, world!</title>
 </head>
 <body>
-<h1>Criar usuários</h1>
+
+
+
+<div class="row">
+
+    <div class="col-sm">
+
+    </div>
+
+
+    <div class="col-sm">
+
+        <h1>Criar usuário</h1>
+
+        <!-- SCRIPT DO FORMULARIO-->
+
+        <form th:action="@{/usuarios/criar}" th:object="${usuario}" method="post">
+            <div class="mb-3">
+                <label for="exampleInputNome" class="form-label">Nome</label>
+                <input th:field="*{nome}" type="text" class="form-control" id="exampleInputNome" >
+
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputIdade" class="form-label">Idade</label>
+                <input th:field="*{idade}" type="number" class="form-control" id="exampleInputIdade">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Salvar</button>
+            <a   class="btn btn-danger">Cancelar</a>
+        </form>
+    </div>
+
+
+
+    <div class="col-sm">
+
+    </div>
+
+</div>
+
+
 
 <!-- Optional JavaScript; choose one of the two! -->
 

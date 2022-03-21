@@ -15,11 +15,28 @@
 
 
 
-<div class="row">
+<div class="row" >
 
     <div class="col-sm"></div>
     <div class="col-sm">
-        <h1>Listar usuários</h1>
+
+
+
+        <div class="row">
+            <div class="col-sm text-center  align-middle">
+
+                <!--RECEBENDO VALOR DO THYMELEAF-->
+                <h1 th:text="${titulo}"></h1>
+
+            </div>
+
+
+            <div class="col-sm  align-middle "  style="margin-top:7%;" >
+
+                <a th:href="criar" type="button" class="btn btn-primary" STYLE="display:block; border-radius: 50%; ">Criar usuário</a>
+
+            </div>
+        </div>
 
         <!--CÓDIGO DA TABELA-->
 
@@ -29,27 +46,17 @@
                 <th scope="col">#</th>
                 <th scope="col">Nome</th>
                 <th scope="col">Idade</th>
-                <th scope="col">Data</th>
+
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
+            <tr th:each="usuario : ${lista_usuarios}">
+                <th th:text="${usuario.id}" scope="row"></th>
+                <td th:text="${usuario.nome}"></td>
+                <td th:text="${usuario.idade}"></td>
+
             </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-            </tr>
+
             </tbody>
         </table>
 
