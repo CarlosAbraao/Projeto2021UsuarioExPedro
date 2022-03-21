@@ -3,6 +3,7 @@ package com.carlosdev.aplicacaoWeb.controller;
 
 import com.carlosdev.aplicacaoWeb.entities.Usuario;
 import com.carlosdev.aplicacaoWeb.repositories.UsuarioRepository;
+import com.carlosdev.aplicacaoWeb.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +16,7 @@ import java.util.List;
 public class UsuariosController {
 
     @Autowired
-    private UsuarioRepository usuarioRepository;
+    private UsuarioService usuarioService;
 
     @GetMapping("/listar")
     public ModelAndView listarUsuarios(){
@@ -25,7 +26,7 @@ public class UsuariosController {
 
         // CRIANDO UM LISTA DE USUÁRIOS DO BANCO
 
-        List<Usuario> usuarioList = usuarioRepository.findAll();
+        List<Usuario> usuarioList = usuarioService.findAll();
         mv.addObject("lista_usuarios",usuarioList);
 
         return mv;
@@ -41,15 +42,15 @@ public class UsuariosController {
 
     @PostMapping("/criar")
     public String criarUsuarios( Usuario usuario){
-                usuarioRepository.save(usuario);
+                usuarioService.save(usuario);
         return "redirect:/usuarios/listar";
 
     }
 
     @GetMapping("/deletar/{id}")
     public String deletar(@PathVariable(value = "id") Long id){
-        Usuario usuario = usuarioRepository.findUsuarioById(id);
-        usuarioRepository.delete(usuario);
+        Usuario usuario = usuarioService.findUsuarioById(id);
+        usuarioService.delete(usuario);
 
         return "redirect:/usuarios/listar";
     }
@@ -57,7 +58,7 @@ public class UsuariosController {
     @GetMapping("/editar/{id}")
     public ModelAndView editarPagina(@PathVariable(value = "id") Long id){
         ModelAndView mv = new ModelAndView("usuariosEditar");
-        Usuario usuario = usuarioRepository.findUsuarioById(id);
+        Usuario usuario = usuarioService.findUsuarioById(id);
         mv.addObject("usuario",usuario);
 
         return mv;
@@ -66,7 +67,7 @@ public class UsuariosController {
     @PostMapping("/editar/{id}")
     public String editar( Usuario usuario){
 
-        usuarioRepository.save(usuario);
+        usuarioService.save(usuario);
 
 
         return "redirect:/usuarios/listar";
