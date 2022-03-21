@@ -53,4 +53,13 @@ public class UsuariosController {
 
         return "redirect:/usuarios/listar";
     }
+
+    @GetMapping("/editar/{id}")
+    public ModelAndView editar(@PathVariable(value = "id") Long id){
+        ModelAndView mv = new ModelAndView("usuariosEditar");
+        Usuario usuario = usuarioRepository.findUsuarioById(id);
+        mv.addObject("usuario",usuario);
+
+        return mv;
+    }
 }

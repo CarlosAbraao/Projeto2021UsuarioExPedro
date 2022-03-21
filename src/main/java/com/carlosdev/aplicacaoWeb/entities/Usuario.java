@@ -44,5 +44,14 @@ public class Usuario implements Serializable {
     public void setIdade(Integer idade) {
         this.idade = idade;
     }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", idade=" + idade +
+                '}';
+    }
 }
 
