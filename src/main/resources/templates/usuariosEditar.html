@@ -27,7 +27,7 @@
 
         <!-- SCRIPT DO FORMULARIO-->
 
-        <form th:action="@{/usuarios/criar}" th:object="${usuario}" method="post">
+        <form th:action="@{/usuarios/editar/{id}(id=${usuario.id})}" th:object="${usuario}" method="post">
             <div class="mb-3">
                 <label for="exampleInputId"  class="form-label">Nome</label>
                 <input th:field="*{id}" type="text" readonly="readonly" class="form-control" id="exampleInputId" >
