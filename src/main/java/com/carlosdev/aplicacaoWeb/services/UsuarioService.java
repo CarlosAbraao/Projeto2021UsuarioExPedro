@@ -22,8 +22,21 @@ public class UsuarioService {
     }
 
 
-    public void save(Usuario usuario) {
-        usuarioRepository.save(usuario);
+    public Boolean save(Usuario usuario) {
+
+        // VERIFICAR SE O USUARIO EXISTE
+        // SE O CAMPO EMAIL FOR IGUAL A NULL ELE SALVA O USUARIO E RETORNA TRUE, SENÃO RETORNA FALSE E N SALVA O USUARIO
+
+
+        Usuario usuarioEmailEncontrado = findUsuarioByEmail(usuario.getEmail());
+
+        if(usuarioEmailEncontrado == null){
+            usuarioRepository.save(usuario);
+            return true;
+        }
+        return false;
+
+
     }
 
     public Usuario findUsuarioById(Long id) {
@@ -31,6 +44,13 @@ public class UsuarioService {
 
         return usuarioId;
     }
+
+    public Usuario findUsuarioByEmail(String email) {
+        Usuario usuarioEmail = usuarioRepository.findUsuarioByEmail(email);
+
+        return usuarioEmail;
+    }
+
 
     public void delete(Usuario usuario) {
          usuarioRepository.delete(usuario);

@@ -15,11 +15,16 @@ public class Usuario implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String nome;
+
+    private String email;
     private Integer idade;
 
     public Usuario(){
 
     }
+
+
+
 
     public Long getId() {
         return id;
@@ -37,6 +42,14 @@ public class Usuario implements Serializable {
         this.nome = nome;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public Integer getIdade() {
         return idade;
     }
@@ -45,13 +58,6 @@ public class Usuario implements Serializable {
         this.idade = idade;
     }
 
-    @Override
-    public String toString() {
-        return "Usuario{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", idade=" + idade +
-                '}';
-    }
+
 }
 
