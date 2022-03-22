@@ -29,12 +29,17 @@ public class UsuarioService {
 
 
         Usuario usuarioEmailEncontrado = findUsuarioByEmail(usuario.getEmail());
+        // SE O EMAIL DO USUARIO ESTIVER VAZIO VAI EXIBIR UMA MENSSAGEM
+        if (usuario.getEmail().equals("")){
 
-        if(usuarioEmailEncontrado == null){
-            usuarioRepository.save(usuario);
-            return true;
+
+            if(usuarioEmailEncontrado == null){
+                usuarioRepository.save(usuario);
+                return true;
+            }
+            return false;
         }
-        return false;
+       return false;
 
 
     }

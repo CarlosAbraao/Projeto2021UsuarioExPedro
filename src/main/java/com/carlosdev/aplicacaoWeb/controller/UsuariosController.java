@@ -41,9 +41,20 @@ public class UsuariosController {
     }
 
     @PostMapping("/criar")
-    public String criarUsuarios( Usuario usuario){
-                usuarioService.save(usuario);
-        return "redirect:/usuarios/listar";
+    public ModelAndView criarUsuarios( Usuario usuario){
+      // SE O METODO REALMENTE SALVAR O USUARIO ELE VAI PARA PAGINA "LISTAR"
+        if(usuarioService.save(usuario)){
+            return listarUsuarios();
+        }
+            // UMA DAS FORMA DE CRIAR MENSSAGEM DE ERRO EM FORM
+        ModelAndView mv = new ModelAndView("usuariosCriar");
+        mv.addObject("erroEmailMessage","Email inválido!!");
+
+        return mv;
+
+
+
+
 
     }
 
